@@ -14,5 +14,9 @@
 	{% else %}
 		<p>No recipes are available.</p>
 	{% endif %}
+
+	<form action= "{% url 'RecipesManagement:new_recipe' %}" method="get">
+		<button type="Add">Add a recipe</button>
+	</form>
 	</body>
 </html>

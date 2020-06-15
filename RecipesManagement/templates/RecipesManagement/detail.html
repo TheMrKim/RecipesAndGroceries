@@ -27,14 +27,5 @@
 		<input type="submit" value="Ajouter">
 		</form>
 
-		<!--<form action="{% url 'RecipesManagement:link_recipe_ingredient' recipe.id %}" method="post">
-		{% csrf_token %}
-		{% for recipe_ingredient in recipe.recipeingredient_set.all %}
-			<input type="radio" name="recipe_ingredient" id="recipe_ingredient{{ forloop.counter }}" value="{{ recipe_ingredient.id }}">
-			<label for="recipe_ingredient{{ forloop.counter }}">{{ recipe_ingredient.ingredient.ingredient_name }}</label><br>
-		{% endfor %}
-		<input type="submit" value="Ajouter">
-		</form>-->
-
 	</body>
 </html>

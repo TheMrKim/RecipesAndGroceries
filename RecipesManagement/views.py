@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 #from django.template import loader
 
 from .models import Recipe, Ingredient, Unit, RecipeIngredient
@@ -10,6 +11,14 @@ def index(request):
 	recipes_list= Recipe.objects.all()[:5]
 	context = {'recipes_list':recipes_list}
 	return render(request, 'RecipesManagement/index.html', context) 
+
+def new_recipe(request):
+	return render(request, 'RecipesManagement/new_recipe.html')
+
+def create_recipe(request):
+	recipe = Recipe(recipe_name=request.POST['recipe_name'], pub_date=timezone.now())
+	recipe.save()
+	return HttpResponseRedirect(reverse('RecipesManagement:index'))
 
 def recipe_detail(request, recipe_id):
 	recipe = get_object_or_404(Recipe, pk=recipe_id)
