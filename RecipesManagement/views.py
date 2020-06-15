@@ -5,15 +5,17 @@ from django.utils import timezone
 #from django.template import loader
 
 from .models import Recipe, Ingredient, Unit, RecipeIngredient
+from .forms import RecipeForm
 
 
 def index(request):
-	recipes_list= Recipe.objects.all()[:5]
+	recipes_list= Recipe.objects.all()
 	context = {'recipes_list':recipes_list}
 	return render(request, 'RecipesManagement/index.html', context) 
 
 def new_recipe(request):
-	return render(request, 'RecipesManagement/new_recipe.html')
+	form = RecipeForm()
+	return render(request, 'RecipesManagement/new_recipe.html', {'form':form})
 
 def create_recipe(request):
 	recipe = Recipe(recipe_name=request.POST['recipe_name'], pub_date=timezone.now())
