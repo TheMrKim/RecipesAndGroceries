@@ -36,4 +36,22 @@ ri_h = r.recipeingredient_set.create(quantity = 2, ingredient = i_h)
 ri_l = r.recipeingredient_set.create(quantity = 60, ingredient = i_l)
 ri_r = r.recipeingredient_set.create(quantity = 5, ingredient = i_r)
 
+r2 = Recipe(recipe_name="pâte à pizza", pub_date=timezone.now())
+r2.save()
+
+u_sach = Unit(unit_name="sachet")
+u_sach.save()
+u_cac = Unit(unit_name="cuillère à café")
+u_cac.save()
+
+i_sel = u_cac.ingredient_set.create(ingredient_name = "sel")	
+i_levboul = u_sach.ingredient_set.create(ingredient_name = "levure boulangère")
+i_eau = u_cl.ingredient_set.create(ingredient_name = "eau")
+
+r2i_f = r2.recipeingredient_set.create(quantity = 350, ingredient = i_f)
+r2i_sel = r2.recipeingredient_set.create(quantity = 2, ingredient = i_sel)
+r2i_levboul = r2.recipeingredient_set.create(quantity = 1, ingredient = i_levboul)
+r2i_h = r2.recipeingredient_set.create(quantity = 3, ingredient = i_h)
+r2i_eau = r2.recipeingredient_set.create(quantity = 25, ingredient = i_eau)
+
 print( "It is done")
