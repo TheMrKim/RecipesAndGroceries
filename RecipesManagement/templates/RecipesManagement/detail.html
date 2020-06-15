@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Recipe {{ recipe.recipe_name }}</title>
+	</head>
+	<body>
+
+		<h1>{{recipe.recipe_name}}</h1>
+
+		{% for recipe_ingredient in recipe.recipeingredient_set.all %}
+		<p>{{ recipe_ingredient.ingredient.ingredient_name }}</p>
+		{% endfor %}
+		
+		{% if error_message %} <p><strong>{{ error_message }}</strong></p>{% endif %}
+
+		<form action="{% url 'RecipesManagement:link_recipe_ingredient' recipe.id %}" method="post">
+		{% csrf_token %}
+			<label for="ingredient_to_link"> Ajouter un ingrédient:</label>
+			<select name ="ingredient_to_link_id" id="ingredient_to_link">
+		
+		{% for ingredient in ingredient_list.all %}
+				<option value="{{ ingredient.id }}">{{ingredient.ingredient_name}}</option>
+		{% endfor %}
+
+			</select>
+		<input type="submit" value="Ajouter">
+		</form>
+
+		<!--<form action="{% url 'RecipesManagement:link_recipe_ingredient' recipe.id %}" method="post">
+		{% csrf_token %}
+		{% for recipe_ingredient in recipe.recipeingredient_set.all %}
+			<input type="radio" name="recipe_ingredient" id="recipe_ingredient{{ forloop.counter }}" value="{{ recipe_ingredient.id }}">
+			<label for="recipe_ingredient{{ forloop.counter }}">{{ recipe_ingredient.ingredient.ingredient_name }}</label><br>
+		{% endfor %}
+		<input type="submit" value="Ajouter">
+		</form>-->
+
+	</body>
+</html>
